@@ -1,5 +1,4 @@
 #!/bin/bash
-#附加存储块
 parted -s /dev/vdb mklabel gpt
 parted -s /dev/vdb unit mib mkpart primary 0% 100%
 mkfs.ext4 /dev/vdb1
@@ -7,17 +6,14 @@ mkdir /mnt/blockstorage
 echo /dev/vdb1               /mnt/blockstorage       ext4    defaults,noatime,nofail 0 0 >> /etc/fstab
 mount /mnt/blockstorage
 
-#安装apache和yaaw
 mkdir -p /mnt/blockstorage/www/html/aria2/download
 yum -y install httpd
 cd /mnt/blockstorage/www/html
 git clone https://github.com/binux/yaaw
 
-#配置apache
 sed -i "s@/var/www/html@/mnt/blockstorage/www/html@" /root/.aria2/aria2.conf
 service httpd start
 
-#设置防火墙
 iptables -I INPUT -m state --state NEW -m udp -p udp --dport 80 -j ACCEPT
 iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 80 -j ACCEPT
 iptables -I INPUT -m state --state NEW -m udp -p udp --dport 51413 -j ACCEPT
@@ -25,7 +21,6 @@ iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 51413 -j ACCEPT
 service iptables save
 service iptables restart
 
-#安装魔改BBR
 yum -y install make gcc
 wget -O ./tcp_tsunami.c https://www.moerats.com/usr/down/CentOS_Kernel/tcp_tsunami.c
 echo "obj-m:=tcp_tsunami.o" > Makefile
