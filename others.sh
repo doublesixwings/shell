@@ -11,9 +11,6 @@ yum -y install httpd
 cd /mnt/blockstorage/www/html
 git clone https://github.com/binux/yaaw
 
-sed -i "s@/var/www/html@/mnt/blockstorage/www/html@" /root/.aria2/aria2.conf
-service httpd start
-
 iptables -I INPUT -m state --state NEW -m udp -p udp --dport 80 -j ACCEPT
 iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 80 -j ACCEPT
 iptables -I INPUT -m state --state NEW -m udp -p udp --dport 51413 -j ACCEPT

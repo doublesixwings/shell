@@ -13,4 +13,5 @@ else
     echo update......
 fi
 /etc/init.d/aria2 start
- 
+sed -i "s@/var/www/html@/mnt/blockstorage/www/html@" /root/.aria2/aria2.conf
+service httpd start
