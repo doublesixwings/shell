@@ -1,5 +1,4 @@
 #!/bin/bash
-#配置aria2
 /etc/init.d/aria2 stop
 sed -i "s@/usr/local/caddy/www/aria2/Download@/mnt/blockstorage/www/html/aria2/download@" /root/.aria2/aria2.conf
 sed -i "s@peer-id-prefix=-TR2770-@#peer-id-prefix=-TR2770-@" /root/.aria2/aria2.conf
