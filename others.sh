@@ -1,5 +1,5 @@
 #!/bin/bash
-yum -y install make gcc
+yum -y install make gcc git
 wget -O ./tcp_tsunami.c https://www.moerats.com/usr/down/CentOS_Kernel/tcp_tsunami.c
 echo "obj-m:=tcp_tsunami.o" > Makefile
 make -C /lib/modules/`uname -r`/build M=`pwd` modules CC=/usr/bin/gcc
