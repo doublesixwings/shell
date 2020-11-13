@@ -23,10 +23,15 @@ yum -y install httpd
 cd /mnt/blockstorage/www/html
 git clone https://github.com/binux/yaaw
 
-iptables -I INPUT -m state --state NEW -m udp -p udp --dport 80 -j ACCEPT
-iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 80 -j ACCEPT
-iptables -I INPUT -m state --state NEW -m udp -p udp --dport 51413 -j ACCEPT
-iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 51413 -j ACCEPT
+#iptables -I INPUT -m state --state NEW -m udp -p udp --dport 80 -j ACCEPT
+#iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 80 -j ACCEPT
+#iptables -I INPUT -m state --state NEW -m udp -p udp --dport 51413 -j ACCEPT
+#iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 51413 -j ACCEPT
 #service iptables save
 #service iptables restart
+firewall-cmd --zone=public --add-port=80/tcp --permanent
+firewall-cmd --zone=public --add-port=80/udp --permanent
+firewall-cmd --zone=public --add-port=51413/tcp --permanent
+firewall-cmd --zone=public --add-port=51413/udp --permanent
+firewall-cmd --reload
 
