@@ -27,6 +27,6 @@ iptables -I INPUT -m state --state NEW -m udp -p udp --dport 80 -j ACCEPT
 iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 80 -j ACCEPT
 iptables -I INPUT -m state --state NEW -m udp -p udp --dport 51413 -j ACCEPT
 iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 51413 -j ACCEPT
-service iptables save
-service iptables restart
+#service iptables save
+#service iptables restart
 
