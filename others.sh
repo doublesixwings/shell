@@ -20,9 +20,9 @@ sysctl -p
 
 yum -y install httpd
 #mkdir -p /mnt/blockstorage/www/html/aria2/download
-mkdir -p /www/html/aria2/download
+mkdir -p /var/www/html/aria2/download
 #cd /mnt/blockstorage/www/html
-cd /www/html
+cd /var/www/html
 git clone https://github.com/binux/yaaw
 
 #iptables -I INPUT -m state --state NEW -m udp -p udp --dport 80 -j ACCEPT
